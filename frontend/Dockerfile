@@ -10,7 +10,6 @@ WORKDIR /app
 COPY --from=build /app .
 RUN addgroup -S nodeuser && adduser -S -G nodeuser nodeuser
 USER nodeuser
-RUN npm install --production
 EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=5s CMD wget -q http://localhost:3000/health -O /dev/null || exit 1
 ENV NODE_ENV=production
